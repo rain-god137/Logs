@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tasks
+{% endblock %}
+
+{% block header %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="{{ url_for('static', filename='scripts/tasks.bundle.js') }}"></script>
+    <link rel="stylesheet" href="/static/task.css">
+{% endblock %}
+
+{% block main %}
+    
+    <!-- MAIN -->
+    <div class="flex flex-row gap-2">
+        
+        <!-- TASKS LIST -->
+        <div class="
+        basis-1/5 
+        h-screen 
+        flex
+        flex-col
+        rounded-l-lg
+        justify-start"
+
+        id="listT"
+        >
+            <!-- TASKS Display-->
+            <h1>Tasks</h1>
+
+            <div id="aesbord"></div>
+
+            <div style="margin-left: 14px; margin-top: 10px; margin-right: 14px;">
+                <div class="relative h-10 w-full min-w-[200px] mb-5">
+                    <input
+                        id="date-picker"
+                        class="peer h-full w-full rounded-[7px]
+                                border-t-0 border-1 border-neon-lavender border-t-transparent
+                                bg-transparent px-3 py-2.5
+                                text-sm text-white
+                                outline-none transition-colors
+                                focus:border-neon-lavender focus:outline-none
+                            "
+                        placeholder=" "
+                        autocomplete="off"
+                    />
+                    <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-neon-lavender before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-neon-lavender after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-white peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-neon-lavender peer-focus:after:border-t-1 peer-focus:after:border-r-2 peer-focus:after:border-neon-lavender peer-disabled:text-transparent peer-disabled:before:border-neon-lavender peer-disabled:after:border-neon-lavender peer-disabled:peer-placeholder-shown:text-white">
+                        Select a Date
+                    </label>
+                </div>
+
+                <input type="text" maxlength="50" placeholder="New Task..." id='taskCreator' autocomplete="off" required />
+            </div>
+
+            <div id="toRefresh" class="h-full mb-2">
+               <div id="taskSection" style="padding: 0.5rem; height: 95%;">
+               
+                   <div id="taskHolder" class="flex flex-row overflow-y-auto items-center pt-5 ">
+                       <ul style="width: 100%;">
+                           {% for id, task in taskInfo.items() %}
+                           <div class="cbxtsk">
+   
+                             <div class="cbx-box" style="flex: 1;">
+                               {% if task[1] == 0 %}
+                                   <input type="checkbox" class="cbx" data-taskRef="{{id}}"/>
+                               {% else %}
+                                   <input type="checkbox" class="cbx" data-taskRef="{{id}}" checked/>
+                               {% endif %}
+                             </div>
+                             
+                             
+                             <li style="flex: 8;">
+                                 <button class="tasksClic" data-taskname="{{task[0]}}" data-taskRef="{{id}}">
+                                     <div style="align-items: center; display: flex; width: 100%; height: 100%;">
+                                       <p style="font-size: 14px;" data-taskRef="{{id}}">{{task[0]}}</p>
+                                     </div>
+                                 </button>
+                             </li>
+   
+                             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                               <button class="deleteBtns" data-taskRef="{{id}}">
+                                   <i class="fa-solid fa-trash" style="color: white;"></i>
+                               </button>
+                             </div>
+                           </div>
+                           {% endfor %}
+   
+                       </ul>
+                   </div>
+
+               </div>
+   
+               <div id="dateHolder" style="height: 5%;">
+                   <datetime id="dateT">{{ current_date }}</datetime>            
+               </div>
+            </div>
+
+        </div>
+        <!-- /TL -->
+
+        <!-- SUB-0 -->
+        <div class="
+        basis-4/5
+        flex
+        flex-col 
+        gap-2
+        h-screen">    
+            
+            <!-- TASKS NOTES -->
+            <div class="flex-[2.5] overflow-y-auto rounded-xl" id="noteHolder">
+                <div class="grid grid-cols-3 items-center">
+                    <div id="savePopUp" class="flex justify-start pl-4 pt-1">
+                        <div class="text-neon-lavender">Saved!</div>
+                        <div><span class="material-symbols-outlined text-neon-lavender">check</span></div>
+                    </div>
+                    <div class="justify-self-center">
+                       <h6 class="text-sm font-semibold text-white md:text-lg p-2 " id="editorHeader">
+                       </h6>
+                    </div>
+                    <div class="justify-self-end pr-4 flex justify-center">
+                       <button id="saveBtn"></button>
+                    </div>
+                </div>
+                <div id="taskNote">
+                    <div class="flex items-center justify-center h-full w-full text-gray-400 italic select-none">
+                        Select a task to view its content.
+                    </div>
+                </div>
+            </div>
+            <!-- /TN -->
+
+            <!-- SUB-1 -->
+            <div class="flex-[1.5] rounded-r-lg gap-2 flex flex-row">
+                
+                <!-- COMPLETION -->
+                <div class="basis-1/2 rounded" id="cpnbox">
+                    <p id="cpndisplay">{{taskCompleted}}/{{taskPending}}</p>
+                </div>
+                <!-- /C -->
+
+
+                <!-- TIME -->
+                <div class="basis-1/2 rounded" id="timeBox">
+                    <time id="current-time"></time>
+                </div>
+                <!-- /T -->
+
+
+            </div>
+            <!-- /S1 -->
+
+        </div>  
+        <!-- /S0 -->  
+
+    </div>
+    <!-- /M -->
+
+{% endblock %}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html style="background: radial-gradient(circle at top left, #1a0d30, #0a0604); overscroll-behavior: none;" lang = 'en'>
+
+<body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            "primary": "#905cbf",
+                            "background-light": "#f8f6f6",
+                            "background-dark": "#0a0604",
+                            "neon-cyan": "#00f2ff",
+                            "neon-teal": "#00ffd5",
+                            "neon-lav": "#605cbf",
+                            "neon-lavender": "#9e7adb",
+                            "glass-white": "rgba(255, 255, 255, 0.05)",
+                            "glass-dark": "rgba(0, 0, 0, 0.6)",
+                        },
+                        fontFamily: {
+                            "display": ["Public Sans", "sans-serif"]
+                        },
+                        borderRadius: {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "2xl": "1.5rem",
+                            "full": "9999px"
+                        },
+                    },
+                },
+            }
+        </script>
+
+        <style>
+            .glass-panel {
+                background: radial-gradient(circle at top left, #170534, #0a0604);
+                height: 100%;
+                backdrop-filter: blur(16px);
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8)
+                }
+
+            .glass-panel:hover {
+                border: 0.2px solid #8060b774;
+            }
+
+            .glow-lav {
+                filter: drop-shadow(0 0 8px rgba(119, 0, 255, 0.5))
+                }
+    
+            .anime-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: linear-gradient(rgb(12, 1, 24), rgb(0, 0, 0)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuCVzBWkRsZEPuK5ZMw-CEapqxug_3tJNRrt0BfuH90mdvlDQNjmfHvUVdV4ES_hRBZbcZwx9NA413B_dXg0I1tBG-pbCY7n4KlmK7NkuslJrD5aFlL9UbmIp2M1WwD7Lt8v5B-m9yKfsPLRL46tsgn6vA2obTpYHoUTFTlWkDWZbw3aMLLIsRWz6gW-80c4NHmAw2DaKnP7SSu0z7YY5rL_Od-zoiifCTe9ejBfc3if9KZTp32RxGaQG-vKumD5l3080HxZK-mXIoBE);
+            background-size: cover;
+            background-position: center;
+            filter: blur(4px)
+            }
+        </style>
+
+        <link href="/static/favicon.ico" rel="icon">
+
+        <title>Logs: {% block title %}{% endblock %}</title>
+
+        <header>
+
+            <nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+
+                <div class="flex lg:flex-1">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Your Company</span>
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fvillage-1%2F64%2Flog-natural-wood-tree-4096.png&f=1&nofb=1&ipt=866023eaca84014e51959848b12e5fa0f98ee268d1ba39ae064170f6b0f58ed6" alt="" class="h-12 w-auto" />
+                    </a>
+                </div>
+
+                <div class="flex lg:hidden">
+                    <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                        <span class="sr-only">Open main menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <head-links class="hidden lg:flex lg:gap-x-12" style="font-family: 'Courier New', Courier, monospace">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{url_for('index')}}" class="text-sm/6 font-semibold text-white">Home</a>
+                        <a href="{{url_for('tasks')}}" class="text-sm/6 font-semibold text-white">Tasks</a>
+                        <a href="{{url_for('journal')}}" class="text-sm/6 font-semibold text-white">Journal</a>
+                        <a href="{{url_for('logout')}}" class="text-sm/6 font-semibold text-white">Log Out</a>
+                    {% else %}
+                        <a href="{{url_for('register')}}" class="text-sm/6 font-semibold text-white">Sign Up</a>
+                        <a href="{{url_for('login')}}" class="text-sm/6 font-semibold text-white">Login</a>
+                    {% endif %}
+                </head-links>
+
+            </nav>
+
+            <el-dialog>
+                <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+                <div tabindex="0" class="fixed inset-0 focus:outline-none">
+                    <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Your Company</span>
+                        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto" />
+                        </a>
+                        <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                        <span class="sr-only">Close menu</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        </button>
+                    </div>
+                    <div class="mt-6 flow-root">
+                        <div class="-my-6 divide-y divide-white/10">
+                        <div class="space-y-2 py-6">
+                            <div class="-mx-3">
+                                {% if current_user.is_authenticated %}
+                                    <a href="{{url_for('index')}}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Home</a>
+                                    <a href="{{url_for('tasks')}}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Tasks</a>
+                                    <a href="{{url_for('journal')}}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Journal</a>
+                                    <a href="{{url_for('logout')}}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Log Out</a>    
+                                {% else %}
+                                    <a href="{{url_for('index')}}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Sign Up</a>
+                                    <a href="{{url_for('tasks')}}" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5">Login</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </el-dialog-panel>
+                </div>
+                </dialog>
+            </el-dialog>
+            
+            {% block header %}{% endblock %}
+
+        </header>
+    </head>
+
+    <main style="font-family: 'Times New Roman', Times, serif;">
+    
+        {% block main %}{% endblock %}
+    
+    </main>
+</body>
+
+</html>

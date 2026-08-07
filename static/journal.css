@@ -1,0 +1,151 @@
+#fileInput {
+        max-width: 100%;
+        max-height: 100%;
+        overflow-x: hidden; /* no horizontal scroll */
+        overflow-y: auto; /* only vertical scroll */
+        word-wrap: break-word; /* wrap long words */        
+    }
+
+#fileDisplay {
+
+    background: radial-gradient(circle at top left, #170534, #0a0604);
+    backdrop-filter: blur(16px);
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8)
+            
+}
+
+#fileDisplay:hover, #textArea:hover {
+    border: 0.2px solid #8060b774;
+}
+
+.fNames {
+
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0px 15px;
+    background-color: rgba(66, 66, 66, 0);
+    border-radius: 7px;
+    color: white;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition-duration: .2s;
+}
+
+
+
+.fNames:hover {
+    background-color: rgb(77, 77, 77);
+    transition-duration: .2s;
+}
+
+
+
+.button:active {
+    transform: translate(1px , 1px);
+    transition-duration: .2s;
+}
+
+#fileCreator {
+    font-family: inherit;
+    width: 60%;
+    height: 30px;
+    border: 0;
+    border-bottom: 2px solid #805cbf;
+    outline: 0;
+    font-size: 15px;
+    color: #b0a4df;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+        color: #fff;
+}
+}
+
+#fileCreator:focus {
+
+padding-bottom: 6px;
+font-weight: 700;
+border-width: 3px;
+border-image: linear-gradient(to right, #605cbf, #9e7adb);
+border-image-slice: 1;
+}
+/* reset input */
+#fileCreator {
+&:required,
+&:invalid {
+    box-shadow: none;
+}
+}
+
+.deleteBtn {
+    height: 40px;
+    font-size: 10px;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    width: 30px;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition-duration: .2s;
+    
+}
+
+.deleteBtn:hover {
+    background-color: #740f00;
+    transition-duration: .2s;
+}
+
+#textArea {
+    background: radial-gradient(circle at left, #130724, #0a0604);
+    backdrop-filter: blur(16px);
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8)
+}
+
+
+#nameDisplay {
+    width: 100%;
+    font-family: "Courier New", Courier, monospace;
+    font-size: medium;
+    font-weight: bold;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#savePopUp {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#savePopUp.show{
+    opacity: 1;
+}
+
+.milkdown {
+    background: transparent;
+    --crepe-color-background: #ffffff;
+    --crepe-color-on-background:#ffffff;
+    --crepe-font-default: "Courier New", Courier, monospace;
+}
+
+.milkdown h1,
+.milkdown h2,
+.milkdown h3,
+.milkdown h4,
+.milkdown h5,
+.milkdown h6 {
+  font-family: "Courier New", Courier, monospace !important;
+}

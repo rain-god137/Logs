@@ -1,0 +1,256 @@
+h1 {
+    padding-top: 10px;
+    font-size: 40px;
+    color: #ffffff;
+    margin-left: 12px;
+}
+
+#listT {
+    background: radial-gradient(circle at top left, #170534, #0a0604);
+    border-radius: 25px;
+}
+
+#dateHolder {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#dateT {
+    margin-left: 12px;
+    margin-right: 12px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+
+#date-picker,
+#date-picker:focus,
+#date-picker:active,
+#date-picker:focus-visible,
+#taskCreator,
+#taskCreator:focus,
+#taskCreator:active,
+#taskCreator:focus-visible{
+  outline: none;
+  box-shadow: none;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-ring-color: transparent;
+}
+
+#taskHolder {
+    display: flex;
+    flex-direction: row;
+    flex: 6;
+}
+
+#aesbord {
+    margin: 12px;
+    margin-top: 10px;
+    border-top: 2px solid #805cbf;
+}
+
+
+
+#taskCreator {
+    font-family: inherit;
+    width: 65%;
+    height: 30px;
+    border: 0;
+    border-bottom: 2px solid #805cbf;
+    outline: 0;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+        color: #ffffff;
+    }
+
+    #taskCreator:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #ffffff, #141413);
+    border-image-slice: 1;
+    }
+    /* reset input */
+    #taskCreator {
+    &:required,
+    &:invalid {
+        box-shadow: none;
+    }
+    }
+}
+
+#taskSection {
+    overflow-y: auto;
+    max-height: 100%;
+    width: 100%;
+}
+
+.cbx-box {
+    height: 30px;
+    width: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.cbx {
+    height: 19.5px;
+    width: 19px;
+}
+
+
+.tasksClic {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: rgba(66, 66, 66, 0);
+    border-radius: 7px;
+    font-size: small;
+    color: white;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition-duration: .2s;
+}
+
+.tasksClic:hover {
+    background-color: rgba(77, 77, 77, 0.227);
+    transition-duration: .2s;
+}
+
+.tasksClic.selected {
+    background-color: #b3b3b336;
+}
+
+.cbxtsk {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 2px;
+}
+
+
+.deleteBtns {
+    height: 30px;
+    width: 20px;
+    border-radius: 7px;
+    font-size: small;
+}
+
+
+.deleteBtns:hover {
+    background-color: #740f00;
+    transition-duration: .2s;
+}
+
+
+#saveBtn {
+  height: 26px;
+  width: 26px;
+  border-radius: 4px;
+}
+
+#noteHolder {
+    background: radial-gradient(circle at left, #130724, #0a0604);
+    height: 100%;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8)
+}
+
+
+
+#editorHeader {
+    font-family: "Courier New", Courier, monospace;
+}
+
+#savePopUp {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#savePopUp.show{
+    opacity: 1;
+}
+
+#onCursor {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#onCursor.show {
+    color: white;
+    opacity: 1;
+}
+
+#taskNote {
+    max-width: 100%;
+    max-height: 100%;
+    background: transparent;
+    overflow-x: hidden; /* no horizontal scroll */
+    overflow-y: auto; /* only vertical scroll */
+    word-wrap: break-word; /* wrap long words */
+}
+
+.milkdown {
+    background: transparent;
+    --crepe-color-background: #ffffff;
+    --crepe-color-on-background:#ffffff;
+    --crepe-font-default: "Courier New", Courier, monospace;
+}
+
+.milkdown h1,
+.milkdown h2,
+.milkdown h3,
+.milkdown h4,
+.milkdown h5,
+.milkdown h6 {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+#cpnbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at left, #130724, #0a0604);
+    backdrop-filter: blur(16px);
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8)
+}
+
+#cpndisplay {
+
+    font-size: 100px;
+    color: #ffffff;
+
+}
+
+
+#timeBox {
+    background: radial-gradient(circle at left, #130724, #0a0604);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+    align-items: center;
+}
+
+
+#current-time {
+    font-size: 100px;
+    color: #ffffff;
+}
+
+#noteHolder:hover, #listT:hover, #cpnbox:hover,  #timeBox:hover{
+    border: 0.2px solid #8060b774;
+}

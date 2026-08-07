@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Journal
+{% endblock %}
+
+{% block header %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="{{ url_for('static', filename='scripts/journal.bundle.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='journal.css') }}">
+
+{% endblock %}
+
+{% block main %}
+    
+    <!-- MAIN -->
+    <div class="flex flex-row gap-2 p-1.5">
+        
+        <!-- File List -->
+        <div id="fileDisplay"
+        class="
+        basis-1/5 
+        h-screen 
+        flex
+        flex-col
+        justify-start" 
+        >
+
+            <h2 style="color: #9379c0;" class="text-3xl font-semibold tracking-tight text-heading md:text-4xl p-4 underline">
+                Files
+            </h2>
+
+
+            <!-- FILE LIST HOLDER -->
+            <div class="listHolder">
+
+                <div style="padding: 1rem; display: flex; gap: 0.5rem; align-items: center;">
+                    <input type="text" maxlength="20" placeholder="New File Name" id='fileCreator' required />
+                </div>
+
+                <div style="padding: 2px" id="fError">
+                    <!-- Error messages will appear here -->
+                </div>
+                
+                <div id="toUpdate" class="p-2 flex flex-row">
+                    <div id="filesHolder" class="w-full overflow-y-auto max-h-[70vh]">
+                        <ul>
+                            {% for jlist in jlists %}
+                            <li>
+                                <button class="fNames" data-filename="{{ jlist }}">
+                                    {{ jlist }}
+                                </button>                        
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div id="deleteBtns" class="overflow-y-auto max-h-[70vh]">
+
+                        <ul>
+                            {% for jlist in jlists %}
+                            <li>
+                                <button class="deleteBtn" data-filename="{{ jlist }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>                        
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+                
+            </div>
+            <!-- /FLH -->
+    
+        </div >
+        <!-- /FL -->
+        
+        <!-- Text Area -->
+        <div class="
+        basis-4/5
+        gap-2
+        h-screen
+        ">
+            
+            <!-- TASKS NOTES -->
+            <div class="h-screen rounded-r-lg" id="textArea">
+                <div class="grid grid-cols-3 items-center">
+                    <div id="savePopUp" class="flex justify-start pl-4 pt-1">
+                        <div class="text-neon-lavender">Saved!</div>
+                        <div><span class="material-symbols-outlined text-neon-lavender">check</span></div>
+                    </div>
+                    <div class="justify-self-center">
+                       <div id="nameDisplay"></div> 
+                    </div>
+                    <div class="justify-self-end pr-4 flex justify-center">
+                       <button id="saveBtn"></button>
+                    </div>
+                </div>
+                <div id="fileInput"> 
+                    <div class="flex items-center justify-center h-full w-full text-gray-400 italic select-none">
+                        Select a file to view its content.
+                    </div>
+                </div>
+            </div>
+            <!-- /TN -->
+
+        </div>  
+        <!-- /TA -->  
+
+    </div>
+    <!-- /M -->
+
+{% endblock %}

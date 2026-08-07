@@ -1,0 +1,40 @@
+<div id="taskSection" style="padding: 0.5rem; height: 95%;">
+               
+    <div id="taskHolder" class="flex flex-row overflow-y-auto items-center pt-5">
+        <ul style="width: 100%;">
+            {% for id, task in taskInfo.items() %}
+            <div class="cbxtsk">
+
+                <div class="cbx-box" style="flex: 1;">
+                {% if task[1] == 0 %}
+                    <input type="checkbox" class="cbx" data-taskRef="{{id}}"/>
+                {% else %}
+                    <input type="checkbox" class="cbx" data-taskRef="{{id}}" checked/>
+                {% endif %}
+                </div>
+                
+                
+                <li style="flex: 8;">
+                    <button class="tasksClic" data-taskname="{{task[0]}}" data-taskRef="{{id}}">
+                        <div style="align-items: center; display: flex; width: 100%; height: 100%;">
+                        <p style="font-size: 16px;" data-taskRef="{{id}}">{{task[0]}}</p>
+                        </div>
+                    </button>
+                </li>
+
+                <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+                <button class="deleteBtns" data-taskRef="{{id}}">
+                    <i class="fa-solid fa-trash" style="color: white;"></i>
+                </button>
+                </div>
+            </div>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+</div>
+
+<div id="dateHolder" style="height: 5%;">
+    <datetime id="dateT">{{ current_date }}</datetime>            
+</div>

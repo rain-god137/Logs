@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block main %}
+
+<div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fvillage-1%2F64%2Flog-natural-wood-tree-4096.png&f=1&nofb=1&ipt=866023eaca84014e51959848b12e5fa0f98ee268d1ba39ae064170f6b0f58ed6" alt="Logs" class="mx-auto h-20 w-auto" />
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Register your account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form action="#" method="POST" class="space-y-6">
+      <div>
+        {{ form.hidden_tag() }}
+        <div>
+            <label for="email" class="block text-sm/6 font-medium text-gray-100">Create Username</label>
+            <div class="mt-2">
+                    {{ form.username(class = "block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6")}}
+            </div>
+            {% if form.username.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ form.username.errors[0] }}</p>
+            {% endif %}
+        </div>
+      </div>
+
+        <div>
+            <div class="flex items-start">
+                <label for="password" class="block text-sm/6 font-medium text-gray-100">Create Password</label>
+            </div>
+
+            <div class="mt-2">
+                    {{ form.password(class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6")}}
+            </div>
+
+        </div>
+
+        <div>
+            <label for="confirm_password" class="block text-sm/6 font-medium text-gray-100">Confirm Password</label>
+            <div class="mt-2">
+                {{ form.confirm_password(class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6") }}
+            </div>
+            {% if form.confirm_password.errors %}
+                <p class="text-red-400 text-sm mt-1">{{ form.confirm_password.errors[0] }}</p>
+            {% endif %}
+        </div>
+
+      <div>
+            {{ form.submit(class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500")}}
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

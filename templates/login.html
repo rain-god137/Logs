@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block main %}
+
+<div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.iconfinder.com%2Fdata%2Ficons%2Fvillage-1%2F64%2Flog-natural-wood-tree-4096.png&f=1&nofb=1&ipt=866023eaca84014e51959848b12e5fa0f98ee268d1ba39ae064170f6b0f58ed6" alt="Logs" class="mx-auto h-20 w-auto" />
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Log in to your account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form action="#" method="POST" class="space-y-6">
+      <div>
+        {{ form.hidden_tag() }}
+        <div>
+            <label for="email" class="block text-sm/6 font-medium text-gray-100">Username</label>
+            <div class="mt-2">
+                    {{ form.username(class = "block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6")}}
+            </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm/6 font-medium text-gray-100">Password</label>
+          <div class="text-sm">
+            <a href="#" class="font-semibold text-[#e19749]-400 hover:text-[#e19749]-300">Forgot password?</a>
+          </div>
+        </div>
+        <div class="mt-2">
+          {{ form.password(class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6")}}  
+        </div>
+      </div>
+
+      <div>
+            {{ form.submit(class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500")}}
+      </div>
+    </form>
+  
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+</div>
+
+{% endblock %}

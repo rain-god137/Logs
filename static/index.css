@@ -1,0 +1,75 @@
+#graphHolder {
+    margin-right: 6px;
+}
+
+#lineGraphHolder{
+    height: 50%;
+    width: 100%;
+    background: radial-gradient(circle at top left, #1d0b39, #0a0604);
+    border-radius: 25px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+#barGraphHolder{
+    margin-top: 5px;
+    height: 50%;
+    width: 100%;
+    background: radial-gradient(circle at top left, #170534, #0a0604);
+    border-radius: 25px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+#barGraphHolder:hover,  #lineGraphHolder:hover{
+    border: 0.2px solid #8060b774;
+}
+
+
+#statsHolder {
+    height: 50%;
+    border-radius: 25px;
+    padding: 10px;
+    background-color:  #1e1234;
+}
+
+#ssHolder {
+    height: 50%;
+
+}
+
+#somethingHolder {
+    margin-top: 5px;
+    height: 50%;
+}
+
+.cell {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    background: #1f1f1f;
+    color: white;
+    font-size: 12px;
+    padding: 6px 8px;
+    border-radius: 6px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+
+.cell:hover .tooltip {
+    opacity: 1;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "build:journal": "ENTRY=journal vite build",
+    "build:tasks": "ENTRY=tasks vite build",
+    "build:index": "ENTRY=index vite build",
+    "build:all": "npm run build:journal && npm run build:tasks"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "@milkdown/crepe": "^7.18.0",
+    "@milkdown/kit": "^7.18.0",
+    "@milkdown/plugin-listener": "^7.18.0",
+    "axios": "^1.13.3",
+    "better-sqlite3": "^12.6.2",
+    "chart.js": "^4.5.1",
+    "flatpickr": "^4.6.13"
+  }
+}
