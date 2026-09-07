@@ -1,4 +1,5 @@
 import math
+import os
 from datetime import date, datetime, timedelta, timezone
 
 from flask import Flask, flash, jsonify, redirect, render_template, request, url_for
@@ -18,8 +19,9 @@ from wtforms import PasswordField, StringField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
-app.config["SECRET_KEY"] = "AdvancedProt"
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "instance", "database.db")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-fallback-key")
 
 bcrypt = Bcrypt(app)
 
