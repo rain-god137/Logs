@@ -95,7 +95,8 @@ The application combines task management with a journaling system, gamification 
 ## Demo
 
 VIDEO: https://youtu.be/zUWA9bMQvQI
-HANDSON: https://logs-4lw8.onrender.com/ 
+
+HANDS-ON: https://logs-4lw8.onrender.com/ 
 
 
 ---
